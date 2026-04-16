@@ -150,6 +150,10 @@
       align-items: start;
     }
 
+    .main {
+      min-width: 0;
+    }
+
     .main section {
       margin-bottom: 3rem;
     }
@@ -247,6 +251,162 @@
       font-size: 0.92rem;
       color: var(--muted);
       margin-top: 0.3rem;
+    }
+
+    .badge-embed-inner {
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+
+    .badge-embed-inner h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.6rem;
+      color: var(--dark);
+    }
+
+    .badge-embed-inner > p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .badge-embed-preview {
+      margin: 0.75rem 0 1.25rem;
+    }
+
+    .badge-embed-preview a {
+      display: inline-block;
+      line-height: 0;
+    }
+
+    .badge-embed-preview img {
+      display: block;
+      width: 320px;
+      max-width: 100%;
+      height: auto;
+      aspect-ratio: 320 / 128;
+      object-fit: contain;
+    }
+
+    .embed-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0.65rem;
+    }
+
+    .embed-tab {
+      font: inherit;
+      font-size: 0.92rem;
+      font-weight: 600;
+      padding: 0.45rem 0.85rem;
+      margin-bottom: -1px;
+      color: var(--muted);
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .embed-tab:hover {
+      color: var(--dark);
+    }
+
+    .embed-tab[aria-selected="true"] {
+      color: var(--dark);
+      border-bottom-color: var(--red);
+    }
+
+    .embed-tab:focus-visible {
+      outline: 2px solid var(--red);
+      outline-offset: 2px;
+    }
+
+    .embed-panel {
+      margin-bottom: 0;
+    }
+
+    .embed-panel[hidden] {
+      display: none;
+    }
+
+    .embed-toolbar {
+      --embed-row-h: 2.75rem;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      gap: 0.75rem;
+      min-width: 0;
+    }
+
+    .embed-code-wrap {
+      flex: 1 1 0;
+      min-width: 0;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .embed-code {
+      flex: 1;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      min-height: var(--embed-row-h);
+      padding: 0 0.65rem;
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.76rem;
+      line-height: 1.35;
+      color: var(--dark);
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      box-sizing: border-box;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .embed-code code {
+      display: block;
+      white-space: nowrap;
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    .embed-copy {
+      flex-shrink: 0;
+      align-self: stretch;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: var(--embed-row-h);
+      min-width: 4.75rem;
+      padding: 0 0.9rem;
+      font: inherit;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--dark);
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      box-sizing: border-box;
+      transition: border-color 0.15s, background 0.15s, color 0.15s;
+    }
+
+    .embed-copy:hover {
+      border-color: var(--red);
+      color: var(--red);
+    }
+
+    .embed-copy:focus-visible {
+      outline: 2px solid var(--red);
+      outline-offset: 2px;
     }
 
     .sidebar {
@@ -475,6 +635,44 @@
           </div>
         </section>
 
+        <section aria-labelledby="heading-badge">
+          <div class="author-card badge-embed-inner">
+            <h2 id="heading-badge">Use the badge</h2>
+            <p>If you want to spread the message, you can add this badge to your website footer, a blog post, or your GitHub readme so visitors can jump straight to this page.</p>
+            <div class="badge-embed-preview">
+              <a href="https://stopnoslop.com/" target="_blank" rel="noopener noreferrer">
+                <img
+                  src="images/banner.webp"
+                  alt="Stop! No Slop. — badge linking to stopnoslop.com"
+                  width="320"
+                  height="128"
+                  loading="lazy"
+                  decoding="async">
+              </a>
+            </div>
+            <div class="embed-tabs" role="tablist" aria-label="Embed code format">
+              <button type="button" class="embed-tab" role="tab" id="embed-tab-html" aria-selected="true" aria-controls="embed-panel-html">HTML</button>
+              <button type="button" class="embed-tab" role="tab" id="embed-tab-md" aria-selected="false" aria-controls="embed-panel-md" tabindex="-1">Markdown (GitHub)</button>
+            </div>
+            <div id="embed-panel-html" class="embed-panel" role="tabpanel" aria-labelledby="embed-tab-html">
+              <div class="embed-toolbar">
+                <div class="embed-code-wrap">
+                  <pre class="embed-code"><code id="embed-code-html">&lt;a href=&quot;https://stopnoslop.com/&quot;&gt;&lt;img src=&quot;https://stopnoslop.com/images/banner.webp&quot; width=&quot;320&quot; height=&quot;128&quot; alt=&quot;Stop! No Slop.&quot;&gt;&lt;/a&gt;</code></pre>
+                </div>
+                <button type="button" class="embed-copy" id="embed-copy-btn" data-copy-for="html">Copy</button>
+              </div>
+            </div>
+            <div id="embed-panel-md" class="embed-panel" role="tabpanel" aria-labelledby="embed-tab-md" hidden>
+              <div class="embed-toolbar">
+                <div class="embed-code-wrap">
+                  <pre class="embed-code"><code id="embed-code-md">[![Stop! No Slop.](https://stopnoslop.com/images/banner.webp)](https://stopnoslop.com/)</code></pre>
+                </div>
+                <button type="button" class="embed-copy" data-copy-for="md">Copy</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section aria-labelledby="heading-reading">
           <h2 id="heading-reading">Further reading</h2>
           <ul class="reading-list">
@@ -546,6 +744,55 @@
       </a>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      var tabHtml = document.getElementById("embed-tab-html");
+      var tabMd = document.getElementById("embed-tab-md");
+      var panelHtml = document.getElementById("embed-panel-html");
+      var panelMd = document.getElementById("embed-panel-md");
+      if (!tabHtml || !tabMd || !panelHtml || !panelMd) return;
+
+      function selectTab(which) {
+        var isHtml = which === "html";
+        tabHtml.setAttribute("aria-selected", isHtml);
+        tabMd.setAttribute("aria-selected", !isHtml);
+        tabHtml.tabIndex = isHtml ? 0 : -1;
+        tabMd.tabIndex = isHtml ? -1 : 0;
+        panelHtml.hidden = !isHtml;
+        panelMd.hidden = isHtml;
+      }
+
+      tabHtml.addEventListener("click", function () {
+        selectTab("html");
+      });
+      tabMd.addEventListener("click", function () {
+        selectTab("md");
+      });
+
+      document.querySelectorAll(".embed-copy").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var id =
+            btn.getAttribute("data-copy-for") === "md"
+              ? "embed-code-md"
+              : "embed-code-html";
+          var el = document.getElementById(id);
+          if (!el) return;
+          var text = el.textContent;
+          function done() {
+            var orig = btn.textContent;
+            btn.textContent = "Copied!";
+            setTimeout(function () {
+              btn.textContent = orig;
+            }, 2000);
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done).catch(function () {});
+          }
+        });
+      });
+    })();
+  </script>
 
 </body>
 </html>

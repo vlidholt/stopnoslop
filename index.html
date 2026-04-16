@@ -285,16 +285,28 @@
       font-size: 1.1rem;
       font-weight: 700;
       letter-spacing: -0.02em;
+      line-height: 1.15;
       color: var(--dark);
       text-align: left;
-      margin-bottom: 0.15rem;
+      margin-bottom: 0;
     }
 
     .author-role {
-      font-size: 0.88rem;
+      font-size: 0.82rem;
+      line-height: 1.25;
       color: var(--muted);
       text-align: left;
+      margin-top: 0.12rem;
       margin-bottom: 0;
+    }
+
+    .author-role a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .author-role a:hover {
+      color: var(--red);
     }
 
     .author-card .author-heading p {
@@ -302,10 +314,10 @@
     }
 
     .author-card .author-heading .author-name {
-      margin-bottom: 0.15rem;
+      margin-bottom: 0;
     }
 
-    .author-card p {
+    .author-card > p[itemprop="description"] {
       font-size: 0.95rem;
       color: var(--mid);
       line-height: 1.65;
@@ -317,7 +329,7 @@
       font-weight: 400;
       color: var(--dark);
       margin-top: 1.25rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 1.1rem;
     }
 
     .author-social {
@@ -499,7 +511,7 @@
             itemprop="image">
           <div class="author-heading">
             <p class="author-name" id="author-name" itemprop="name">Viktor Lidholt</p>
-            <p class="author-role" itemprop="jobTitle">Founder of Serverpod</p>
+            <p class="author-role" itemprop="jobTitle">Founder of <a href="https://serverpod.dev" target="_blank" rel="noopener">Serverpod</a></p>
           </div>
         </div>
         <p itemprop="description">Viktor is an ex-Google software engineer, startup founder, and public speaker. He works with building developer tools powered by AI.</p>

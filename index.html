@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stop! No Slop.</title>
+  <meta name="description" content="AI is a great tool, not a substitute for you. Stop sending unreviewed AI-generated content. Stop the slop.">
+  <meta name="author" content="Viktor Lidholt">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#f6f6f6">
+
+  <!-- Canonical & social preview base URL — set to your live site (e.g. GitHub Pages) -->
+  <link rel="canonical" href="https://stopnoslop.com/">
+
+  <!-- Open Graph (Facebook, LinkedIn, Slack, iMessage, etc.) -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Stop! No Slop.">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="Stop! No Slop.">
+  <meta property="og:description" content="AI is a great tool, not a substitute for you. Stop sending unreviewed AI-generated content. Stop the slop.">
+  <meta property="og:url" content="https://stopnoslop.com/">
+  <meta property="og:image" content="https://stopnoslop.com/images/social.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Stop! No Slop. — banner with logo and headline">
+  <meta property="article:author" content="Viktor Lidholt">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Stop! No Slop.">
+  <meta name="twitter:description" content="AI is a great tool, not a substitute for you. Stop sending unreviewed AI-generated content. Stop the slop.">
+  <meta name="twitter:image" content="https://stopnoslop.com/images/social.jpg">
+  <meta name="twitter:image:alt" content="Stop! No Slop. — banner with logo and headline">
+  <meta name="twitter:creator" content="@viktorlidholt">
+
+  <link rel="icon" type="image/webp" href="images/logo.webp">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://stopnoslop.com/#website",
+        "name": "Stop! No Slop.",
+        "url": "https://stopnoslop.com/",
+        "inLanguage": "en-US",
+        "publisher": { "@id": "https://stopnoslop.com/#person" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://stopnoslop.com/#webpage",
+        "url": "https://stopnoslop.com/",
+        "name": "Stop! No Slop.",
+        "description": "AI is a great tool, not a substitute for you. Stop sending unreviewed AI-generated content. Stop the slop.",
+        "isPartOf": { "@id": "https://stopnoslop.com/#website" },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://stopnoslop.com/images/social.jpg",
+          "width": 1200,
+          "height": 630
+        },
+        "mainEntity": { "@id": "https://stopnoslop.com/#article" }
+      },
+      {
+        "@type": "Article",
+        "@id": "https://stopnoslop.com/#article",
+        "headline": "Stop! No Slop.",
+        "description": "AI is a great tool, not a substitute for you. When you use AI to generate content without curating or verifying it, you transfer cognitive load to the reader. Principles and further reading on stopping AI slop.",
+        "image": "https://stopnoslop.com/images/social.jpg",
+        "author": { "@id": "https://stopnoslop.com/#person" },
+        "publisher": { "@id": "https://stopnoslop.com/#person" },
+        "inLanguage": "en-US",
+        "mainEntityOfPage": { "@id": "https://stopnoslop.com/#webpage" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://stopnoslop.com/#person",
+        "name": "Viktor Lidholt",
+        "jobTitle": "Founder of Serverpod",
+        "description": "Ex-Google software engineer, startup founder and public speaker. Builds developer tools powered by AI.",
+        "image": "https://stopnoslop.com/images/avatar.jpg",
+        "url": "https://www.linkedin.com/in/viktorlidholt/",
+        "sameAs": [
+          "https://www.linkedin.com/in/viktorlidholt/",
+          "https://x.com/viktorlidholt",
+          "https://bsky.app/profile/viktorious.com"
+        ]
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --red: #c0392b;
+      --red-light: #e74c3c;
+      --dark: #1a1a1a;
+      --mid: #444;
+      --muted: #666;
+      --border: #e5e5e5;
+      --bg-subtle: #fafafa;
+      --max-width: 1080px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.7;
+      color: var(--dark);
+      background: #fff;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ---- Header ---- */
+    .header {
+      text-align: center;
+      padding: 4rem 1.5rem 3rem;
+      background: #f6f6f6;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header img {
+      width: 140px;
+      height: 140px;
+      object-fit: contain;
+    }
+
+    .header h1 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-top: 1.25rem;
+      color: var(--dark);
+    }
+
+    .header h1 span {
+      color: var(--red);
+    }
+
+    /* ---- Layout ---- */
+    .wrapper {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 3rem 1.5rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 3.5rem;
+      align-items: start;
+    }
+
+    /* ---- Main content ---- */
+    .main section {
+      margin-bottom: 3rem;
+    }
+
+    .main h2 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+      color: var(--dark);
+    }
+
+    .main p {
+      font-size: 1.05rem;
+      color: var(--mid);
+      margin-bottom: 1rem;
+    }
+
+    /* ---- Principles ---- */
+    .principles {
+      display: grid;
+      gap: 0;
+    }
+
+    .principle {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .principle:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .principle-inner {
+      --principle-pad-y: 1.5rem;
+      position: relative;
+      padding: var(--principle-pad-y) 0 var(--principle-pad-y) calc(3px + 1.25rem);
+    }
+
+    .principle-inner::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: var(--principle-pad-y);
+      bottom: var(--principle-pad-y);
+      width: 3px;
+      background: var(--red);
+      border-radius: 1px;
+    }
+
+    .principle-number {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--red);
+      margin-bottom: 0.5rem;
+    }
+
+    .principle-inner h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+
+    .principle-inner p {
+      font-size: 1rem;
+      color: var(--mid);
+      margin: 0;
+    }
+
+    /* ---- Further reading ---- */
+    .reading-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .reading-list li {
+      padding: 0;
+    }
+
+    .reading-list a {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--dark);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: border-color 0.15s;
+    }
+
+    .reading-list a:hover {
+      border-color: var(--red);
+      color: var(--red);
+    }
+
+    .reading-list .desc {
+      display: block;
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+
+    /* ---- Sidebar ---- */
+    .sidebar {
+      position: sticky;
+      top: 2rem;
+    }
+
+    .author-card {
+      border-radius: 8px;
+      padding: 1.75rem;
+      background: var(--bg-subtle);
+    }
+
+    .author-row {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .author-photo {
+      display: block;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 2px solid #fff;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    }
+
+    .author-heading {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .author-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--dark);
+      text-align: left;
+      margin-bottom: 0.15rem;
+    }
+
+    .author-role {
+      font-size: 0.88rem;
+      color: var(--muted);
+      text-align: left;
+      margin-bottom: 0;
+    }
+
+    .author-card .author-heading p {
+      margin-bottom: 0;
+    }
+
+    .author-card .author-heading .author-name {
+      margin-bottom: 0.15rem;
+    }
+
+    .author-card p {
+      font-size: 0.95rem;
+      color: var(--mid);
+      line-height: 1.65;
+      margin-bottom: 0.75rem;
+    }
+
+    .author-follow {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--dark);
+      margin-top: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .author-social {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .author-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--mid);
+      line-height: 0;
+      transition: color 0.15s;
+    }
+
+    .author-social a:hover {
+      color: var(--red);
+    }
+
+    .author-social svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    /* ---- Footer ---- */
+    .footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 760px) {
+      .header {
+        padding: 3rem 1.5rem 2rem;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+      }
+
+      .wrapper {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2rem 1.5rem 3rem;
+      }
+
+      .sidebar {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <img src="images/logo.webp" alt="Stop No Slop logo — a robot hand behind a prohibition sign" width="140" height="140">
+    <h1 id="page-heading"><span>Stop!</span> No Slop.</h1>
+  </header>
+
+  <div class="wrapper">
+    <main class="main">
+      <article
+        itemscope
+        itemtype="https://schema.org/Article"
+        aria-labelledby="page-heading">
+
+        <meta itemprop="headline" content="Stop! No Slop.">
+        <meta itemprop="description" content="AI is a great tool, not a substitute for you. Stop sending unreviewed AI-generated content. Stop the slop.">
+        <meta itemprop="inLanguage" content="en-US">
+        <link itemprop="image" href="https://stopnoslop.com/images/social.jpg">
+
+      <!-- Intro -->
+      <section aria-labelledby="heading-why">
+        <h2 id="heading-why">Why were you sent this link?</h2>
+        <p>Someone values your ideas, but feels the last message, document, or code you sent might have been generated by AI without a human filter. They sent you here to save both of you some time.</p>
+      </section>
+
+      <!-- Bottom line -->
+      <section aria-labelledby="heading-bottom-line">
+        <h2 id="heading-bottom-line">The bottom line</h2>
+        <p>Artificial intelligence is a great tool. It's a brilliant brainstorming partner, a tireless pair programmer, and a fantastic editor. But it's not a substitute for you.</p>
+        <p>When you use AI to generate content without curating, editing, or verifying it, you aren't saving time. You are transferring the cognitive load of your work onto the person receiving it. That uncurated, generic, bloated output? That's <strong>Slop</strong>.</p>
+        <p>Here is how we stop the slop and get back to doing great work together.</p>
+      </section>
+
+      <!-- Principles -->
+      <section aria-label="Principles">
+        <div class="principles">
+          <article class="principle">
+            <div class="principle-inner">
+              <span class="principle-number">Principle 1</span>
+              <h3>The "one-shot" rule</h3>
+              <p>If your entire contribution was produced by a single prompt, it is likely not that valuable. High-quality work still requires a human touch, and the receiver of your work can prompt the AI themselves.</p>
+            </div>
+          </article>
+          <article class="principle">
+            <div class="principle-inner">
+              <span class="principle-number">Principle 2</span>
+              <h3>The readability promise</h3>
+              <p>AI loves writing long, meaningless texts filled with platitudes. Forwarding this creates an unnecessary reading tax, forcing your colleagues to sift through paragraphs of artificial fluff. Keep it brief.</p>
+            </div>
+          </article>
+          <article class="principle">
+            <div class="principle-inner">
+              <span class="principle-number">Principle 3</span>
+              <h3>The authorship guarantee</h3>
+              <p>If you didn't read the whole thing, why should anyone else? Never hit send, publish, or submit on something you haven't reviewed line-by-line.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Further reading -->
+      <section aria-labelledby="heading-reading">
+        <h2 id="heading-reading">Further reading</h2>
+        <ul class="reading-list">
+          <li>
+            <a href="https://www.betterup.com/workslop">Workslop: The Hidden Cost of AI-Generated Busywork</a>
+            <span class="desc">BetterUp Labs and Stanford research reveals 40% of U.S. desk workers received workslop last month, costing companies an average of $9M per year.</span>
+          </li>
+          <li>
+            <a href="https://www.gitclear.com/coding_on_copilot_data_shows_ais_downward_pressure_on_code_quality">Coding on Copilot: Data Shows AI's Downward Pressure on Code Quality</a>
+            <span class="desc">GitClear analyzed 153 million changed lines of code and found that AI-assisted development is driving up code churn and reducing code reuse.</span>
+          </li>
+          <li>
+            <a href="https://simonwillison.net/2024/May/8/slop/">Slop is the new name for unwanted AI-generated content</a>
+            <span class="desc">Simon Willison on why "slop" is the perfect word for mindlessly generated AI content thrust upon someone who didn't ask for it — the spam of the AI age.</span>
+          </li>
+        </ul>
+      </section>
+
+      </article>
+
+    </main>
+
+    <aside class="sidebar" aria-label="About the author">
+      <section
+        class="author-card"
+        itemscope
+        itemtype="https://schema.org/Person"
+        aria-labelledby="author-name">
+        <div class="author-row">
+          <img
+            class="author-photo"
+            src="images/avatar.jpg"
+            alt="Portrait of Viktor Lidholt"
+            width="72"
+            height="72"
+            itemprop="image">
+          <div class="author-heading">
+            <p class="author-name" id="author-name" itemprop="name">Viktor Lidholt</p>
+            <p class="author-role" itemprop="jobTitle">Founder of Serverpod</p>
+          </div>
+        </div>
+        <p itemprop="description">Viktor is an ex-Google software engineer, startup founder, and public speaker. He works with building developer tools powered by AI.</p>
+        <p class="author-follow">Follow me on social media.</p>
+        <nav class="author-social" aria-label="Viktor Lidholt on social media">
+          <a href="https://www.linkedin.com/in/viktorlidholt/" rel="noopener noreferrer me" itemprop="sameAs" aria-label="Viktor Lidholt on LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://x.com/viktorlidholt" rel="noopener noreferrer me" itemprop="sameAs" aria-label="Viktor Lidholt on X">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://bsky.app/profile/viktorious.com" rel="noopener noreferrer me" itemprop="sameAs" aria-label="Viktor Lidholt on Bluesky">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.387 2.005-2.83 7.078 5.013 5.19 6.87-1.113 7.823-4.308.953 3.195 2.05 9.271 7.733 4.308 4.267-4.308 1.172-6.498-2.74-7.078a8.741 8.741 0 0 1-.415-.056c.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.79.624-6.478 0-.69-.139-1.861-.902-2.206-.659-.298-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8Z"/></svg>
+          </a>
+        </nav>
+      </section>
+    </aside>
+  </div>
+
+  <footer class="footer">
+    Share this link when it matters: <strong>stopnoslop.com</strong>
+  </footer>
+
+</body>
+</html>
